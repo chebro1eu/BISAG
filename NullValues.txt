@@ -1,0 +1,7 @@
+For those values with entire row as 0s we can erase the entire row
+For those values with partial null values 3 options can be taken
+  a) fill a previous value from the same column
+  b) fill the next value in the same column
+  c) fill the mean of the value from the same column done using a dictionary and fillna with pd.
+  
+  
