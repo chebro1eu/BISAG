@@ -32,10 +32,10 @@ threshold = np.mean(mahalanobis_dist) +  0.73*np.std(mahalanobis_dist)  # Exampl
 # Classify data points as normal or anomalous
 anomalies = np.array(mahalanobis_dist) > threshold
 
-# Print the anomalies found
 print("Anomalies found:")
 for i, anomaly in enumerate(anomalies):
     if anomaly:
         original_data_point = data.iloc[i]  # Retrieve the original data point
-        print(f"Data point {i} is an anomaly:")
-        
+        index_value = data.index[i]  # Retrieve the index value
+        print(f"Data point {index_value} is an anomaly:")
+
