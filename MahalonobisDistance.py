@@ -1,13 +1,20 @@
+import pandas as pd 
+import numpy as np 
+import math as mt
+from sklearn.model_selection import train_test_split
+
 from sklearn.neighbors import LocalOutlierFactor
 failure_data = r'C:\Users\Niranjan\Desktop\BISAG\machine failed\cleaned_data.csv'
 dataset = pd.read_csv(failure_data)
 df = dataset
 df2 = pd.DataFrame(df)
-df2["Date"] = df2['Date'].astype(str) + "  " + df['Time'].astype(str)
-df2['Date']= pd.to_datetime(df['Date'])
+df2["Date"] = df2['Date'].astype(str) + "  " + df2['Time'].astype(str)
+df2['Date']= pd.to_datetime(df2['Date'], format='%d-%m-%Y %H:%M:%S')
 df2 = df2.drop(['Time'],axis = 1)
+df3=df2
 df2 = df2.set_index("Date")
 data = df2
+
 from scipy.spatial.distance import mahalanobis
 # Calculate the Mahalanobis distance
 cov_matrix = np.cov(data.T)  # Calculate the covariance matrix
@@ -38,4 +45,3 @@ for i, anomaly in enumerate(anomalies):
         original_data_point = data.iloc[i]  # Retrieve the original data point
         index_value = data.index[i]  # Retrieve the index value
         print(f"Data point {index_value} is an anomaly:")
-
