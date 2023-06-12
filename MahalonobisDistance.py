@@ -34,7 +34,7 @@ for i in range(len(data)):
     mahalanobis_dist.append(dist)
 
 # Determine the threshold for anomaly detection
-threshold = np.mean(mahalanobis_dist) +  0.73*np.std(mahalanobis_dist)  # Example: Threshold using mean + 3 standard deviations
+threshold = np.mean(mahalanobis_dist) +  5*np.std(mahalanobis_dist)  # Example: Threshold using mean + 3 standard deviations
 
 # Classify data points as normal or anomalous
 anomalies = np.array(mahalanobis_dist) > threshold
